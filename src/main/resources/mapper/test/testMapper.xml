@@ -4,7 +4,7 @@
 
     <select id="selectTest" resultType="com.example.ytaxi.develop.test.dto.TestDto">
         select *
-        from "BOOKMARK"
+        from TBL_BOOKMARK
     </select>
 
 </mapper>
