@@ -4,7 +4,7 @@
 
     <select id="selectLoginCnt" parameterType="com.example.ytaxi.develop.login.dto.LoginDto" resultType="int">
         SELECT COUNT(*)
-          FROM "LOGIN" A
+          FROM TBL_LOGIN A
          WHERE A.LOGIN_ID = #{loginId}
            AND A.PW = #{pw}
     </select>
