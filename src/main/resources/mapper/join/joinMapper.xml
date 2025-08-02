@@ -3,9 +3,41 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.mapper.UserMapper">
-
-    <select id="selectUserById" resultType="com.example.ytaxi.develop.join.JoinEntity">
-    </select>
-
+<mapper namespace="com.join.mapper.joinMapper">
+    <insert id="USER_ADD" parameterType="com.example.ytaxi.develop.login.dto.LoginDto">
+        INSERT INTO TBL_USER
+            (
+                 user_id,
+                 user_login_id,
+                 user_password,
+                 user_nm,
+                 user_zipcode,
+                 user_addr,
+                 user_detail_addr,
+                 user_birth,
+                 gender,
+                 user_phone,
+                 created_dt,
+                 created_id,
+                 updated_dt,
+                 updated_id
+             )
+        VALUES
+            (
+                 CONCAT(#{joinType}, LPAD(TO_NUMBER(user_seq.NEXTVAL), 4, '0')),
+                 #{userLoginId},
+                 #{userPwd},
+                 #{userNm},
+                 #{userZipCode, jdbcType=VARCHAR},
+                 #{userAddress, jdbcType=VARCHAR},
+                 #{userSubAddress, jdbcType=VARCHAR},
+                 #{userBirth, jdbcType=VARCHAR},
+                 #{userGender, jdbcType=VARCHAR},
+                 #{userPhone},
+                 CURRENT_TIMESTAMP,
+                 #{created_id},
+                 CURRENT_TIMESTAMP,
+                 #{updated_id}
+             )
+    </insert>
 </mapper>
