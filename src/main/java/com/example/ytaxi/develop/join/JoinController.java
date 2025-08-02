@@ -17,10 +17,10 @@ import java.util.Map;
 public class JoinController {
 
     @Autowired
-    private JoinService joinService;
+    private JoinServiceImpl joinService;
 
     @RequestMapping(value = "/userJoin", method={RequestMethod.POST})
-    public ResponseEntity<Map<String, Object>> userJoin(@RequestBody JoinDTO joinDTO) throws Exception {
+    public Map<String, Object> userJoin(@RequestBody JoinDTO joinDTO) throws Exception {
         Map<String, Object> userJoinMap = new HashMap<>();
 
         try {
@@ -28,7 +28,10 @@ public class JoinController {
                 String createdId = "홍길동";
                 joinDTO.setCreated_id(createdId);
                 joinDTO.setUpdated_id(createdId);
+
+                System.out.println("joinDTO : " + joinDTO);
             }
+
             int result = joinService.joinUser(joinDTO);
 
             if (result > 0) {
@@ -37,11 +40,12 @@ public class JoinController {
             } else {
                 userJoinMap.put("STATUS", "fail");
             }
-            return ResponseEntity.ok(userJoinMap);
+            return userJoinMap;
         } catch (Exception e) {
+            log.error("회원가입 중 예외 발생", e);
             userJoinMap.put("STATUS", "error");
             userJoinMap.put("MESSAGE", "회원가입 실패: " + e.getMessage());
-            return ResponseEntity.status(500).body(userJoinMap);
+            return userJoinMap;
         }
     }
 }

@@ -12,6 +12,6 @@ public class JoinDAO {
     private SqlSession sqlSession;
 
     public int joinUser(JoinDTO joinDTO) {
-        return sqlSession.insert( "USER_ADD", joinDTO);
+        return sqlSession.insert( "com.join.mapper.joinMapper.USER_ADD", joinDTO);
     }
 }

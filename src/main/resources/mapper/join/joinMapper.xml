@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.join.mapper.joinMapper">
-    <insert id="USER_ADD" parameterType="com.example.ytaxi.develop.login.dto.LoginDto">
+    <insert id="USER_ADD" parameterType="com.example.ytaxi.develop.join.dto.JoinDTO">
         INSERT INTO TBL_USER
             (
                  user_id,
@@ -24,7 +24,7 @@
              )
         VALUES
             (
-                 CONCAT(#{joinType}, LPAD(TO_NUMBER(user_seq.NEXTVAL), 4, '0')),
+                 CONCAT(#{joinType}, LPAD(TO_CHAR(nextval('user_seq')), 6, '0')),
                  #{userLoginId},
                  #{userPwd},
                  #{userNm},
@@ -34,9 +34,9 @@
                  #{userBirth, jdbcType=VARCHAR},
                  #{userGender, jdbcType=VARCHAR},
                  #{userPhone},
-                 CURRENT_TIMESTAMP,
+                 NOW(),
                  #{created_id},
-                 CURRENT_TIMESTAMP,
+                 NOW(),
                  #{updated_id}
              )
     </insert>
