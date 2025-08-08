@@ -21,7 +21,6 @@ public class JoinController {
 
     @RequestMapping(value = "/userJoin", method={RequestMethod.POST})
     public Map<String, Object> userJoin(@RequestBody JoinDTO joinDTO) throws Exception {
-        System.out.println("깃 브랜치 커밋 테스트 ");
         Map<String, Object> userJoinMap = new HashMap<>();
 
         try {
