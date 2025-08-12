@@ -4,9 +4,8 @@
 
     <select id="selectLoginCnt" parameterType="com.example.ytaxi.develop.login.dto.LoginDto" resultType="int">
         SELECT COUNT(*)
-          FROM TBL_LOGIN A
+          FROM TBL_ROLE A
          WHERE A.LOGIN_ID = #{loginId}
-           AND A.PW = #{pw}
         <if test="role != null and role != ''">
             AND A.ROLE = #{role}
         </if>
@@ -14,30 +13,31 @@
 
     <select id="selectLoginDetailInfo" parameterType="com.example.ytaxi.develop.login.dto.LoginDto" resultType="com.example.ytaxi.develop.login.dto.LoginDto">
         SELECT *
-        FROM TBL_LOGIN A
+        FROM TBL_ROLE A
         WHERE A.LOGIN_ID = #{loginId}
-        <if test="pw != null and pw != ''">
-            AND A.PW = #{pw}
-        </if>
         <if test="role != null and role != ''">
             AND A.ROLE = #{role}
         </if>
     </select>
 
     <select id="selectLoginUserInfo" parameterType="String" resultType="com.example.ytaxi.develop.login.dto.LoginUserInfoDto">
-        SELECT 'U' AS ROLE
-             , A.USER_ID
-             , A.USER_NM
-             , A.USER_PHONE
-             , A.USER_ZIPCODE
-             , A.USER_ADDR
-             , A.USER_DETAIL_ADDR
-             , A.CREATED_DT
-             , A.CREATED_ID
-             , A.UPDATED_DT
-             , A.UPDATED_ID
+        SELECT user_nm
+            ,user_phone
+            ,user_zipcode
+            ,user_addr
+            ,user_detail_addr
+            ,created_dt
+            ,created_id
+            ,updated_dt
+            ,updated_id
+            ,gender
+            ,user_birth
+            ,user_password
+            ,refreshtoken
+            ,user_login_id
+            ,user_id
          FROM TBL_USER A
-        WHERE A.USER_ID = #{userId}
+        WHERE A.user_login_id = #{userId}
     </select>
 
     <select id="selectLoginDriverInfo" parameterType="String" resultType="com.example.ytaxi.develop.login.dto.LoginDriverInfoDto">

@@ -1,7 +1,5 @@
 package com.example.ytaxi.config.JWT;
 
-import com.example.ytaxi.config.JWT.CustomUserDetails;
-import com.example.ytaxi.config.JWT.JWTUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -58,8 +56,8 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         String role = auth.getAuthority();
 
-        String token = jwtUtil.createAccessToken(username, role, 60*5*1000L);
-        String refreshToken = jwtUtil.createRefreshToken(username, role, 60*5*1000L);
+        String token = jwtUtil.createAccessToken(username, role, 1*60000L); //5분
+        String refreshToken = jwtUtil.createRefreshToken(username, role, 600*60000L); //50분
 
         System.out.println("LOGIN SUCCESS");
         System.out.println("token: " + token);

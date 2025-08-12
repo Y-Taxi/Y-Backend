@@ -61,7 +61,7 @@ public class SecurityConfig {
         //admin은 ADMIN만 가능
         //다른 요청에 대해서는 로그인이 되어야만 가능
         http.authorizeHttpRequests((auth) -> auth
-            .requestMatchers("/login/*", "/login", "/join", "/testJoin").permitAll()
+            .requestMatchers("/login/*", "/login", "/join", "/testJoin", "/token/*", "/token").permitAll()
             .requestMatchers("/admin").hasRole("ADMIN")
             .anyRequest().authenticated());
 

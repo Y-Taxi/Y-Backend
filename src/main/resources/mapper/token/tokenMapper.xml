@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.token.mapper.TokenMapper">
+
+    <select id="selectUserRefreshToken" parameterType="String" resultType="String">
+        SELECT A.REFRESH_TOKEN
+        FROM TBL_USER A
+        WHERE A.USER_ID = #{userId}
+    </select>
+
+    <select id="selectDriverRefreshToken" parameterType="String" resultType="String">
+        SELECT A.REFRESH_TOKEN
+        FROM TBL_DRIVER A
+        WHERE A.DRIVER_ID = #{driverId}
+    </select>
+
+</mapper>
