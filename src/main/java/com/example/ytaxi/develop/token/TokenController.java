@@ -76,7 +76,7 @@ public class TokenController {
             String username = jwtUtil.getUsername(getToken);
             String role = jwtUtil.getRole(getToken);
 
-            String newToken = jwtUtil.createAccessToken(username, role, 1*60000L);
+            String newToken = jwtUtil.createAccessToken(username, role, 5*60000L);
 
             return "Bearer " +  newToken;
 
