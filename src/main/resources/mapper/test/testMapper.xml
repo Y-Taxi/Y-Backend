@@ -7,4 +7,66 @@
         from TBL_BOOKMARK
     </select>
 
+    <insert id="insertUserPwDrm" parameterType="com.example.ytaxi.develop.login.dto.LoginDto">
+        INSERT INTO tbl_role
+        (
+         id
+        ,role
+        ,login_id
+        ,login_option
+        ,created_dt
+        ,created_id
+        ,updated_dt
+        ,updated_id
+        ) VALUES
+        (
+         NVL((SELECT MAX(id)+1 FROM tbl_role),0)
+        ,'U'
+        ,#{loginId}
+        ,NULL
+        ,SYSDATE()
+        ,'ADMIN'
+        ,SYSDATE()
+        ,'ADMIN'
+        )
+    </insert>
+
+    <insert id="insertUserPwDrm2" parameterType="com.example.ytaxi.develop.login.dto.LoginDto">
+        INSERT INTO tbl_user
+        (
+         user_nm
+        ,user_phone
+        ,user_zipcode
+        ,user_addr
+        ,user_detail_addr
+        ,created_dt
+        ,created_id
+        ,updated_dt
+        ,updated_id
+        ,gender
+        ,user_birth
+        ,user_password
+        ,refreshtoken
+        ,user_login_id
+        ,user_id
+        ) VALUES
+        (
+        'TEST_yezi'
+        ,'01012345678'
+        ,NULL
+        ,NULL
+        ,NULL
+        ,SYSDATE()
+        ,'ADMIN'
+        ,SYSDATE()
+        ,'ADMIN'
+        ,'F'
+        ,'20000427'
+        ,#{pw}
+        ,NULL
+        ,#{loginId}
+        ,'U00' || nextval('USER_SEQ')
+        )
+    </insert>
+
 </mapper>

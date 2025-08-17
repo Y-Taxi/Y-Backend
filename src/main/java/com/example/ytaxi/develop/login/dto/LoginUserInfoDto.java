@@ -21,4 +21,5 @@ public class LoginUserInfoDto {
     private String createdId;
     private Date updatedDt;
     private String updatedId;
+    private String userPassword;
 }
